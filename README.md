@@ -1,3 +1,29 @@
+## The Following tutorial 
+ 1> https://viblo.asia/p/tao-api-va-authenticate-nhanh-chong-voi-package-laravel-sanctum-eW65G1EJZDO
+ 2> https://medium.com/@julianorozco/laravel-7-create-an-api-and-authenticate-it-with-sanctum-3e7f07733f5b
+ 
+ ## Error when create foreign key. In my case, I used #6 , follow : https://stackoverflow.com/questions/40863517/laravel-errno-150-foreign-key-constraint-is-incorrectly-formed/40863886
+ 
+ 1) Spelling : often at times a wrong spelling of the referenced column name or referenced table name can throw up this error and you won't know as the error trace is not very descriptive.
+
+2) Unique : the referenced column must be unique or indexed either by adding ->primary() or adding ->unique() or adding ->index() to the column definition in your migration.
+
+3) Data type : the referenced and referencing fields must have exactly the same data type. this can not be stressed enough.
+
+for bigincrements expected data type is bigInteger('column_name')->unsigned();
+
+for increments expected is integer('column_name')->unsigned(); etc.
+
+4) Remnants : when this error occurs it does not mean that the table is not migrated rather it is migrated but the foreign key columns are not set and it is not added to the migration table hence running php artisan migrate:reset will remove other tables except the faulty tables, so a manual drop of the faulty table is recommended to avoid further errors.
+
+5) Order : this is often the most usual cause of this error the table being referenced must be created or migrated before the reference table else artisan wont find where to integrate the foreign key. to ensure an order for the migration process rename the migration file example:
+
+Table A:2014_10_12_000000_create_users_table.php and
+Table B:2014_10_12_100000_create_password_resets_table.php
+This indicates that Table A will always come before Table B to change that, i will rename Table B to 2014_10_11_100000_create_password_resets_table.php now it will migrate before Table A.
+
+## 6) Enable Foreign Key : if all else fails then add Schema::enableForeignKeyConstraints(); inside your function up() before your migration code example:
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
