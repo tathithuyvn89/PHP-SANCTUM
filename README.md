@@ -1,5 +1,7 @@
 ## The Following tutorial 
  1> https://viblo.asia/p/tao-api-va-authenticate-nhanh-chong-voi-package-laravel-sanctum-eW65G1EJZDO
+ 
+ 
  2> https://medium.com/@julianorozco/laravel-7-create-an-api-and-authenticate-it-with-sanctum-3e7f07733f5b
  
  ## Error when create foreign key. In my case, I used #6 , follow : https://stackoverflow.com/questions/40863517/laravel-errno-150-foreign-key-constraint-is-incorrectly-formed/40863886
